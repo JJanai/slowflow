@@ -8,7 +8,7 @@ Correspondences for Optical Flow](https://hal.inria.fr/hal-01142656/document) an
 
 We provide [two teaser sequences](http://www.cvlibs.net/projects/slow_flow/slow_flow_teaser.zip) to run our code. We are working on publishing the complete high speed datasets used in the project.
 
-## Compilation
+## Compiling
 #### The following libraries are necessary to compile and use our code:
 
 	Eigen3, Boost, Atlas, Blas, Lapack, Flann, GSL, PNG and JPEG
@@ -49,14 +49,14 @@ We provide [two teaser sequences](http://www.cvlibs.net/projects/slow_flow/slow_
 	make
 
 ## Run Pipeline ###
-#### 0. Run epic flow on low resolution to use adaptive frame rates for slow flow
+#### 1. Run epic flow on low resolution to use adaptive frame rates for slow flow
 	./adaptiveFR -path [path] -folder [folder]
 
 	Examples for our teaser_sequences:
 	./adaptiveFR -path '[path to teaser]/sequence/' -folder 'sheeps' -raw
 	./adaptiveFR -path '[path to teaser]/sequence/' -folder 'ambush_2' -format 'out_%i_%03i.png' -start 491 -sintel
 
-#### 1. Run slow_flow for flow estimations of all consecutive high speed frames
+#### 2. Run slow_flow for flow estimations of all consecutive high speed frames
 	./slow_flow [slow flow cfg file]
 
 	An example configuration file is provided in "cfgs".
@@ -67,7 +67,7 @@ We provide [two teaser sequences](http://www.cvlibs.net/projects/slow_flow/slow_
 		-resume		resume processing configuration file
 		-deep_settings	specify settings for deep matching
 
-#### 2. Run dense_tracking using the output of slow flow 
+#### 3. Run dense_tracking using the output of slow flow 
 	./dense_tracking [dense tracking cfg file]
 
 	Optional: 
