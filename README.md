@@ -3,11 +3,10 @@
 This code is based on the paper [Slow Flow: Exploiting High-Speed Cameras for
 Accurate and Diverse Optical Flow Reference Data](http://www.cvlibs.net/publications/Janai2017CVPR.pdf).
 
-The high speed flow code (slow_flow) is based on EpicFlow v1.00. We extended it to reason over multiple frames and occlusions. The extended code is included and for details on the orginal code we refer to the paper by Revaud et al. [EpicFlow: Edge-Preserving Interpolation of
-Correspondences for Optical Flow](https://hal.inria.fr/hal-01142656/document) and the project webpage 
-https://thoth.inrialpes.fr/src/epicflow/
+The high speed flow code (slow_flow) is based on EpicFlow v1.00. We extended it to reason over multiple frames and occlusions. The extended code is included and for details on the original code we refer to the paper by Revaud et al. [EpicFlow: Edge-Preserving Interpolation of
+Correspondences for Optical Flow](https://hal.inria.fr/hal-01142656/document) and the project webpage https://thoth.inrialpes.fr/src/epicflow/.
 
-We provide [two teaser sequences]() to run our code. We are working on publishing the complete high speed datasets used in the project.
+We provide [two teaser sequences](http://www.cvlibs.net/projects/slow_flow/slow_flow_teaser.zip) to run our code. We are working on publishing the complete high speed datasets used in the project.
 
 ## Compilation
 #### The following libraries are necessary to compile and use our code:
@@ -44,7 +43,10 @@ We provide [two teaser sequences]() to run our code. We are working on publishin
 	matlab/detect_edges.m
 	CMakeLists.txt 
 
-#### Run cmake and make to compile the code.
+#### Run cmake and make to compile the code
+	mkdir build
+	cmake ../
+	make
 
 ## Run Pipeline ###
 #### 0. Run epic flow on low resolution to use adaptive frame rates for slow flow
@@ -77,6 +79,7 @@ We provide [two teaser sequences]() to run our code. We are working on publishin
 ## Citation
 
 If you use our code, please cite our paper:
+<br><br>
 @INPROCEEDINGS{<a href="http://www.cvlibs.net/publications/Janai2017CVPR.pdf">Janai2017CVPR</a>,<br>
 &nbsp; author = {<a href="https://avg.is.tue.mpg.de/person/jjanai" target="blank">Joel Janai</a> and <a href="http://ps.is.tuebingen.mpg.de/person/g%C3%BCney" target="blank">Fatma Güney</a> and <a href="https://ps.is.tuebingen.mpg.de/person/jwulff" target="blank">Jonas Wulff</a> and <a href="http://ps.is.tuebingen.mpg.de/person/black" target="blank">Michael Black</a> and <a href="http://www.cvlibs.net" target="blank">Andreas Geiger</a>},<br>
 &nbsp; title = {Slow Flow: Exploiting High-Speed Cameras for Accurate and Diverse Optical Flow Reference Data},<br>&nbsp; booktitle = {Conference on Computer Vision and Pattern	Recognition (CVPR)},<br>
