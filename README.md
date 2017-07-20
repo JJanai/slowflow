@@ -45,6 +45,7 @@ We provide [two teaser sequences](http://www.cvlibs.net/projects/slow_flow/slow_
 
 #### Run cmake and make to compile the code
 	mkdir build
+	cd build
 	cmake ../
 	make
 
