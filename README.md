@@ -77,9 +77,8 @@ We provide [two teaser sequences]() to run our code. We are working on publishin
 ## Citation
 
 If you use our code, please cite our paper:
-@INPROCEEDINGS{Janai2017CVPR,
-  author = {Joel Janai and Fatma Güney and Jonas Wulff and Michael Black and Andreas Geiger},
-  title = {Slow Flow: Exploiting High-Speed Cameras for Accurate and Diverse Optical Flow Reference Data},
-  booktitle = {Conference on Computer Vision and Pattern Recognition (CVPR)},
-  year = {2017}
-} 
+@INPROCEEDINGS{<a href="http://www.cvlibs.net/publications/Janai2017CVPR.pdf">Janai2017CVPR</a>,<br>
+&nbsp; author = {<a href="https://avg.is.tue.mpg.de/person/jjanai" target="blank">Joel Janai</a> and <a href="http://ps.is.tuebingen.mpg.de/person/g%C3%BCney" target="blank">Fatma Güney</a> and <a href="https://ps.is.tuebingen.mpg.de/person/jwulff" target="blank">Jonas Wulff</a> and <a href="http://ps.is.tuebingen.mpg.de/person/black" target="blank">Michael Black</a> and <a href="http://www.cvlibs.net" target="blank">Andreas Geiger</a>},<br>
+&nbsp; title = {Slow Flow: Exploiting High-Speed Cameras for Accurate and Diverse Optical Flow Reference Data},<br>&nbsp; booktitle = {Conference on Computer Vision and Pattern	Recognition (CVPR)},<br>
+&nbsp; year = {2017}<br>
+}
