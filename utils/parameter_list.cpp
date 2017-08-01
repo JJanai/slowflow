@@ -397,7 +397,6 @@ string ParameterList::cfgString(bool all_exps) const {
 	}
 
 	int tabs = ceil(max_length/8) + 1;
-//	int tabs = 1;
 	for(uint32_t f = 0; f < id_list.size(); f++)
 		os << "id" << string(tabs,'\t') << id_list[f] << "\n";
 
@@ -445,7 +444,6 @@ string ParameterList::cfgString(bool all_exps) const {
 
 	for(uint32_t i = 0; i < F; i++) {
 		if(i < set.size() && set[i] > 0) {
-//			os << "pixels " << i << string(ceil(max_length/8),'\t') ;
 			os << "pixels " << i << "\t";
 
 			for(int p = 0 ; p < set[i]; p++)
@@ -469,8 +467,6 @@ string ParameterList::cfgString(bool all_exps) const {
 		uint32_t iter = paramslist_iterator[idx];
 
 		// print parameter name and add tabs
-//		int tabs = ceil(max_length/8) - floor(name.length()/8) + 1;
-//		os << name << string(tabs,'\t');
 		os << name << string(1,'\t');
 
 		if(!all_exps || paramslist[idx].size() == 1)
@@ -490,7 +486,6 @@ string ParameterList::cfgString(bool all_exps) const {
 	}
 
 	if(bf_weights.size() > 0) {
-//		os << "bf_weights" << string(ceil(max_length/8),'\t') ;
 		os << "bf_weights\t";
 		for(uint32_t i = 0; i < bf_weights.size(); i++) {
 			os << bf_weights[i] << "\t";

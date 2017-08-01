@@ -92,20 +92,6 @@ hypothesis* hypothesis::new_complete(int approach) {
 
 #define C_X(i) (gsl_vector_get(c_x,(i)))
 #define C_Y(i) (gsl_vector_get(c_y,(i)))
-//#define COV_X(i,j) (gsl_matrix_get(cov_x,(i),(j)))
-//#define COV_Y(i,j) (gsl_matrix_get(cov_y,(i),(j)))
-
-//		{
-//			printf("# best fit: Y = %g + %g X + %g X^2\n", C_X(0), C_X(1), C_X(2));
-//			printf("# best fit: Y = %g + %g X + %g X^2\n", C_Y(0), C_Y(1), C_Y(2));
-//
-//			printf("# covariance matrix:\n");
-//			printf("[ %+.5e, %+.5e, %+.5e  \n", COV_X(0, 0), COV_X(0, 1), COV_X(0, 2));
-//			printf("  %+.5e, %+.5e, %+.5e  \n", COV_X(1, 0), COV_X(1, 1), COV_X(1, 2));
-//			printf("  %+.5e, %+.5e, %+.5e ]\n", COV_X(2, 0), COV_X(2, 1), COV_X(2, 2));
-//			printf("# chisq = %g\n", chisq_x);
-//		}
-
 
 		// create new hypothesis while replacing the points used to fit!
 		double *new_flow_y = new double[F];
@@ -148,8 +134,6 @@ hypothesis* hypothesis::new_perturbed(double u_p, double v_p) {
 	for(int f = 0; f < F; f++) {
 		float scale = (0.9f / F) * f + 0.1;					// linear scaling
 
-//		perturbed_h->flow_x[f] = flow_x[f] + scale * u_p;
-//		perturbed_h->flow_y[f] = flow_y[f] + scale * v_p;
 		if(flow_x[f] > 0)
 			perturbed_h->flow_x[f] = flow_x[f] + scale * u_p;
 		else
@@ -299,77 +283,6 @@ double hypothesis::distance(hypothesis& h, int method) {
 
 	return sum;
 }
-
-//int hypothesis::compare(const hypothesis& h, double thres, int method) {
-//	if(!completed() || !h.completed()) {
-//		cerr << "Comparing hypotheses have different length!" << endl;
-//		return -2;
-//	}
-//
-//	int first = 0;
-//	int length = F;
-//
-//	double dist = 0;
-//	// difference of final, accumulated or adjacent flow
-//	if(method == FINAL) {
-//		// final flow
-//		int end = first + length;
-//
-//		Vec2d flow_f = Vec2d(flow_y[end], flow_x[end]);
-//		Vec2d flow_f_h = Vec2d(h.flow_y[end], h.flow_x[end]);
-//
-//		double ysq = (flow_f[0] - flow_f_h[0]);
-//		double xsq = (flow_f[1] - flow_f_h[1]);
-//
-//		dist += sqrt(xsq*xsq + ysq*ysq);
-//	} else {
-//		int l = 1;
-//		for(int f = first; f < first + length; f++, l++) {
-//			double ysq = 0, xsq = 0;
-//
-//			Vec2d flow_f = Vec2d(flow_y[f], flow_x[f]);
-//			Vec2d flow_f_h = Vec2d(h.flow_y[f], h.flow_x[f]);
-//
-//			// comparison method
-//			if(method == ACC) {
-//				// accumulated flow
-//				ysq = flow_f[0] - flow_f_h[0];
-//				xsq = flow_f[1] - flow_f_h[1];
-//
-//				dist += sqrt(xsq*xsq + ysq*ysq) / l;
-//			} else if(method == ADJ) {
-//				// adjacent flow
-//				Vec2d flow_fm1 = Vec2d(0,0), flow_fm1_h = Vec2d(0,0);
-//
-//				if(f > first) {
-//					flow_fm1 = Vec2d(flow_y[f - 1], flow_x[f - 1]);
-//					flow_fm1_h = Vec2d(h.flow_y[first - 1], h.flow_x[first - 1]);
-//				}
-//
-//				ysq = ((flow_f[0] - flow_fm1[0]) - (flow_f_h[0] - flow_fm1_h[0]));
-//				xsq = ((flow_f[1] - flow_fm1[1]) - (flow_f_h[1] - flow_fm1_h[1]));
-//
-//				dist += sqrt(xsq*xsq + ysq*ysq);
-//			}
-//		}
-//	}
-//
-////	if(method != ACC)
-//		dist /= length;																		// normalize by length
-//
-//	if(dist > thres)   																		// compare distance to linear threshold
-//		return -2;
-//	else if(not_extrapolated_length < h.not_extrapolated_length)							// the other trajectory is longer
-//		return -1;
-//	else if(not_extrapolated_length > h.not_extrapolated_length)							// this trajectory is longer
-//		return 1;
-//	else if(extrapolation_err > h.extrapolation_err)										// the other has a smaller error
-//		return -1;
-//	else if(extrapolation_err < h.extrapolation_err)										// this trajectory has a smaller error
-//		return 1;
-//	else																					// both trajectories are equal
-//		return 0;
-//}
 
 int hypothesis::compare(const hypothesis& h, double thres, int method) {
 	int first = max(h.startF, startF);

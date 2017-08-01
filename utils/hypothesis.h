@@ -144,15 +144,12 @@ public:
 		endF = F;
 		double* n_flow_x = new double[F];
 		double* n_flow_y = new double[F];
-		// OCCLUSIONS ARE UPDATED AFTER ADAPTION!
-//		int* n_occlusions = new int[F];
 
 		if(skip >= 1) {
 			for(int i = 0; i < F; i++) {
 				int off = i * skip + (skip - 1);
 				n_flow_x[i] = flow_x[off];
 				n_flow_y[i] = flow_y[off];
-//				n_occlusions[i] = max(n_occlusions[i], occlusions[off]);
 			}
 		} else {
 			for(int i = 0; i < F; i++) {
@@ -170,7 +167,6 @@ public:
 				n_flow_x[i] = last_x + skip * (flow_x[off] - last_x);	// scale last flow
 				n_flow_y[i] = last_y + skip * (flow_y[off] - last_y);	// scale last flow
 
-//				n_occlusions[i] = max(n_occlusions[i], occlusions[off]);
 			}
 		}
 
@@ -179,7 +175,6 @@ public:
 		delete[] occlusions;
 		flow_x = n_flow_x;
 		flow_y = n_flow_y;
-//		occlusions = n_occlusions;
 	}
 
 	hypothesis& operator =(const hypothesis& h);
