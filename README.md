@@ -24,7 +24,7 @@ We provide [two teaser sequences](http://www.cvlibs.net/projects/slow_flow/slow_
 	http://vision.ucsd.edu/~pdollar/toolbox/doc/index.html
 
 	Download Deep Matching 
-	(Optional: using course-to-fine by setting ‘deep_matching’ to 0 and ‘slow_flow_layers’  larger than 1)
+	(Optional: using coarse-to-fine by setting ‘deep_matching’ to 0 and ‘slow_flow_layers’  larger than 1)
 	http://lear.inrialpes.fr/people/revaud
 	
 	Download flow-code from Middlebury OF dataset and compile ImageLib
@@ -32,12 +32,15 @@ We provide [two teaser sequences](http://www.cvlibs.net/projects/slow_flow/slow_
 	
 	Download gco-v3.0 library
 	http://vision.csd.uwo.ca/code/
+
+	Download the tree-reweighted message passing algorithm (v1.3)
+	https://www.microsoft.com/en-us/download/details.aspx?id=52499&from=http%3A%2F%2Fresearch.microsoft.com%2Fen-us%2Fdownloads%2Fdad6c31e-2c04-471f-b724-ded18bf70fe3%2F
 	
 	(Optional) Download Gunturk-Altunbasak-Mersereau Alternating Projections Image Demosaicking 
 	By setting ‘raw_demosaicing’ to 1 in the configuration file and uncommenting line 17 and 38 in configuration.h
 	http://www.ipol.im/pub/art/2011/g_gapd/
 
-#### The paths to libraries need to be specified in the following files:
+#### The paths to the libraries need to be specified in the following files:
 	configuration.h
 	configuration_epic.h
 	matlab/detect_edges.m
