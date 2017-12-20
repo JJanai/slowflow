@@ -1,13 +1,16 @@
 #ifndef __VARIATIONAL_AUX_H_
 #define __VARIATIONAL_AUX_H_
 
+#include "../configuration.h"
+
 #include <stdlib.h>
 #include "image.h"
 
 #include "../penalty_functions/penalty_function.h"
 #include "../penalty_functions/modified_l1_norm.h"
 
-#include "../configuration_epic.h"
+// include graph cut library
+#include GCO_PATH(/GCoptimization.h)
 
 #include <vector>
 #include <xmmintrin.h>

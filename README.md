@@ -21,30 +21,30 @@ We provide [two teaser sequences](http://www.cvlibs.net/projects/slow_flow/slow_
 	https://www.microsoft.com/en-us/download/details.aspx?id=52370&from=http%3A%2F%2Fresearch.microsoft.com%2Fen-us%2Fdownloads%2F389109f6-b4e8-404c-84bf-239f7cbf4e3d%2F
 
 	Download Piotr Dollar's toolbox
-	http://vision.ucsd.edu/~pdollar/toolbox/doc/index.html
+	https://pdollar.github.io/toolbox/
 
 	Download Deep Matching 
 	(Optional: using coarse-to-fine by setting ‘deep_matching’ to 0 and ‘slow_flow_layers’  larger than 1)
-	http://lear.inrialpes.fr/people/revaud
+	http://lear.inrialpes.fr/src/deepmatching/
 	
 	Download flow-code from Middlebury OF dataset and compile ImageLib
 	http://vision.middlebury.edu/flow/code/flow-code.zip
 	
-	Download gco-v3.0 library
+	Download gco-v3.0 library (Multi-label optimization)
 	http://vision.csd.uwo.ca/code/
 
 	Download the tree-reweighted message passing algorithm (v1.3)
+	(You might need to modify instances.inc and change "template ..." to "template class ...")
 	https://www.microsoft.com/en-us/download/details.aspx?id=52499&from=http%3A%2F%2Fresearch.microsoft.com%2Fen-us%2Fdownloads%2Fdad6c31e-2c04-471f-b724-ded18bf70fe3%2F
 	
 	(Optional) Download Gunturk-Altunbasak-Mersereau Alternating Projections Image Demosaicking 
-	By setting ‘raw_demosaicing’ to 1 in the configuration file and uncommenting line 17 and 38 in configuration.h
+	By setting ‘raw_demosaicing’ to 1 in the configuration file, uncommenting line 25 and 26 in configuration.h and uncommenting line 13 in CMakeLists.txt
 	http://www.ipol.im/pub/art/2011/g_gapd/
 
 #### The paths to the libraries need to be specified in the following files:
-	configuration.h
-	configuration_epic.h
-	matlab/detect_edges.m
-	CMakeLists.txt 
+	CMakeLists.txt 			(lines 10-13)
+	configuration.h 			(lines 20-25)
+	matlab/detect_edges.m    (lines 3-5)
 
 #### Run cmake and make to compile the code
 	mkdir build

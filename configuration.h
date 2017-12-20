@@ -11,31 +11,22 @@
 #include <iostream>
 #include <string>
 
-// include Hamilton-Adams demosaicing
-extern "C"
-{
-//	#include "[SPECIFY PATH TO HAMILTON ADAMS DEMOSAICING]/dmha.h"
-}
+#define IDENT(x) x
+#define XSTR(x) #x
+#define STR(x) XSTR(x)
+#define CONCAT(x,y) STR(IDENT(x)IDENT(y))
 
-// include flowcode (middlebury devkit)
-#include "[SPECIFY PATH TO MIDDLEBURY DEVKIT]/cpp/colorcode.h"
-#include "[SPECIFY PATH TO MIDDLEBURY DEVKIT]/cpp/flowIO.h"
-
-// include TRWS
-#include "[SPECIFY PATH TO TRWS]/MRFEnergy.h"
-
-// path to deepmatching
-const string DEEPMATCHING_PATH = "[SPECIFY PATH TO DEEPMATCHING]/deepmatching/";
+//############################# PLEASE SPECIFY #############################
+const std::string DEEPMATCHING_PATH = "[SPECIFY PATH TO DEEP MATCHING]";					// DeepMatching
+#define MIDDLEBURY_PATH(file) 	CONCAT([SPECIFY PATH TO MIDDLEBURY DEVKIT], file)			// Middlebury Devkit
+#define GCO_PATH(file) 			CONCAT([SPECIFY PATH TO GRAPH CUT], file)	    			// Graph cut library
+#define TRWS_PATH(file) 		CONCAT([SPECIFY PATH TO TRWS], file)						// Tree-Reweigthed Message Passing
+//#define DMGUNTURK
+//#define DMGUNTURK_PATH(file) 	CONCAT([SPECIFY PATH TO HAMILTON ADAMS DEMOSAICING], file)	// Gunturk-Altunbasak-Mersereau Alternating Projections Image Demosaicking
+//############################# PLEASE SPECIFY #############################
 
 // source path
-const string SOURCE_FILE = __FILE__;
-const string SOURCE_PATH = SOURCE_FILE.substr(0, SOURCE_FILE.rfind("/") + 1);
-
-void HADemosaicing(float *Output, const float *Input, int Width, int Height, int RedX, int RedY) {
-//	HamiltonAdamsDemosaic(Output, Input, Width, Height, RedX, RedY); // Hamilton-Adams implemented by Pascal Getreuer
-}
-
-
-
+const std::string SOURCE_FILE = __FILE__;
+const std::string SOURCE_PATH = SOURCE_FILE.substr(0, SOURCE_FILE.rfind("/") + 1);
 
 #endif /* CONFIGURATION_H_ */

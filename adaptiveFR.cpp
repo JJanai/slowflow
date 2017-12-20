@@ -4,6 +4,8 @@
  *  Created on: Sep 15, 2016
  *      Author: jjanai
  */
+#include "configuration.h"
+
 #include <fstream>
 #include <stdlib.h>
 #include <string.h>
@@ -26,7 +28,28 @@
 #include "epic_flow_extended/variational.h"
 #include "utils/utils.h"
 #include "utils/parameter_list.h"
-#include "configuration.h"
+
+// include Hamilton-Adams demosaicing
+extern "C"
+{
+#ifdef DMGUNTURK
+	#include DMGUNTURK_PATH(/dmha.h)
+#endif
+}
+
+// include flowcode (middlebury devkit)
+#include MIDDLEBURY_PATH(/colorcode.h)
+#include MIDDLEBURY_PATH(/flowIO.h)
+
+// include TRWS
+#include TRWS_PATH(/MRFEnergy.h)
+
+void HADemosaicing(float *Output, const float *Input, int Width, int Height, int RedX, int RedY) {
+#ifdef DMGUNTURK
+	HamiltonAdamsDemosaic(Output, Input, Width, Height, RedX, RedY); // Hamilton-Adams implemented by Pascal Getreuer
+#endif
+}
+
 
 using namespace std;
 using namespace cv;

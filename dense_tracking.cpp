@@ -4,6 +4,9 @@
  *  Created on: Mar 7, 2016
  *      Author: Janai
  */
+#include "configuration.h"
+
+
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
@@ -14,10 +17,6 @@
 #include <set>
 
 #include <flann/flann.hpp>
-
-extern "C" {
-	#include "../libs/dmgunturk/dmha.h"
-}
 #include <chrono>
 
 #include <opencv2/core.hpp>
@@ -46,8 +45,28 @@ extern "C" {
 #include "penalty_functions/lorentzian.h"
 #include "penalty_functions/modified_l1_norm.h"
 #include "penalty_functions/quadratic_function.h"
-#include "configuration.h"
 
+// include Hamilton-Adams demosaicing
+extern "C"
+{
+#ifdef DMGUNTURK
+	#include DMGUNTURK_PATH(/dmha.h)
+#endif
+}
+
+// include flowcode (middlebury devkit)
+#include MIDDLEBURY_PATH(/colorcode.h)
+#include MIDDLEBURY_PATH(/flowIO.h)
+
+// include TRWS
+#include TRWS_PATH(/instances.h)
+#include TRWS_PATH(/MRFEnergy.h)
+
+void HADemosaicing(float *Output, const float *Input, int Width, int Height, int RedX, int RedY) {
+#ifdef DMGUNTURK
+	HamiltonAdamsDemosaic(Output, Input, Width, Height, RedX, RedY); // Hamilton-Adams implemented by Pascal Getreuer
+#endif
+}
 
 using namespace std;
 using namespace cv;
@@ -638,10 +657,8 @@ int main(int argc, char **argv) {
 
 	// discrete optimization set options
 	MRFEnergy<TypeGeneral>::Options options;
-	options.m_method = params.parameter<int>("acc_approach");  							// 0: TRW-S, 1: BP
 	options.m_eps = params.parameter<double>("acc_trws_eps");
 	options.m_iterMax = params.parameter<int>("acc_trws_max_iter");
-	options.m_verbosityLevel = params.verbosity(VER_CMD);
 	options.m_printIter = 1;
 	options.m_printMinIter = 0;
 
@@ -1798,7 +1815,7 @@ int main(int argc, char **argv) {
 
 			mrf->SetAutomaticOrdering();
 
-			if (options.m_method == 0) {
+			if (params.parameter<int>("acc_approach") == 0) {
 				mrf->Minimize_TRW_S(options, lowerBound, energy);
 
 				time(&opt_end);

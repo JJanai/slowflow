@@ -8,6 +8,8 @@
 #ifndef EPIC_UTILS_H_
 #define EPIC_UTILS_H_
 
+#include "../configuration.h"
+
 #include <stdexcept>      // std::out_of_range
 #include <iostream>
 #include <fstream>
@@ -24,8 +26,9 @@
 #include "../epic_flow_extended/image.h"
 #include "../epic_flow_extended/io.h"
 
-#include "../../libs/middlebury_devkit/cpp/flowIO.h"
-#include "../../libs/middlebury_devkit/cpp/colorcode.h"
+// include flowcode (middlebury devkit)
+#include MIDDLEBURY_PATH(/colorcode.h)
+#include MIDDLEBURY_PATH(/flowIO.h)
 
 using namespace cv;
 using namespace std;
